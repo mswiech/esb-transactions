@@ -37,14 +37,14 @@
         <database />
         <persistence-file>META-INF/persistence.xml</persistence-file>
         <osgi-import-pkg>
-            javax.persistence;version="[2.0,2.1)",
-            javax.persistence.criteria;version="[2.0,2.1)",
+            javax.persistence;version="[2.1,2.2)",
+            javax.persistence.criteria;version="[2.1,2.2)",
             javax.sql,
-            org.hibernate;version="[4.2,4.3)",
-            org.hibernate.proxy;version="[4.2,4.3)",
+            org.hibernate;version="[4.3,4.4)",
+            org.hibernate.proxy;version="[4.3,4.4)",
             javassist.util.proxy,
             org.hibernate.ejb;version="[4.2,5)"
-            org.hibernate.proxy;version="[4.2,4.3)",
+            org.hibernate.proxy;version="[4.3,4.4)",
         </osgi-import-pkg>
         <osgi-export-pkg>
             org.jboss.fuse.examples.transactions.model
