@@ -28,7 +28,7 @@
         <!-- A human-readable description for the persistence unit. -->
         <description>Persistence unit for Fuse ESB Enterprise transactions example</description>
         <!-- For this demo, we are using Hibernate as our JPA implementation. -->
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--
           The data sources have been defined and published into the OSGi Service Registry by the `datasource' module.
           You can also use JNDI references to refer to services in the OSGi Service Registry, which is what we're using here.

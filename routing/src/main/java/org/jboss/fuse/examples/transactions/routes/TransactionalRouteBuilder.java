@@ -36,7 +36,9 @@ public class TransactionalRouteBuilder extends SpringRouteBuilder {
                 .log("Received JMS message ${body}")
                 .process(new ConvertToJpaBeanProcessor())
                 .log("Storing ${body} in the database")
-                .to("jpa://org.jboss.fuse.examples.transactions.model.Flight");
+                .to("jpa://org.jboss.fuse.examples.transactions.model.Flight")
+                .transform().simple("${body.toString}")
+                .to("amq://Output.Flights?username=admin&password=admin");
     }
 
     /*
