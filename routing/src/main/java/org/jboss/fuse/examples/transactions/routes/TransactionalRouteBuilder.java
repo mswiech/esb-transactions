@@ -33,10 +33,26 @@ public class TransactionalRouteBuilder extends SpringRouteBuilder {
     @Override
     public void configure() throws Exception {
         from("amq://Input.Flights?username=admin&password=admin")
+              .transacted()
                 .log("Received JMS message ${body}")
                 .process(new ConvertToJpaBeanProcessor())
                 .log("Storing ${body} in the database")
-                .to("jpa://org.jboss.fuse.examples.transactions.model.Flight");
+                .to("jpa://org.jboss.fuse.examples.transactions.model.Flight")
+                .process(new Processor() {
+                   @Override
+                   public void process(final Exchange exchange) throws Exception {
+                      Flight f = exchange.getIn().getBody(Flight.class);
+                      exchange.getIn().setBody(f.getNumber());
+                      exchange.getOut().setBody(f.getNumber());
+                   }
+                })
+        .to("amq://Output.Flights?username=admin&password=admin")
+        .process(new Processor() {
+           @Override
+           public void process(final Exchange exchange) throws Exception {
+              throw new Exception("intentional exception");
+           }
+        });
     }
 
     /*

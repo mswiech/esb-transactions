@@ -92,7 +92,7 @@
                 <!-- JTA transaction manager (Spring interface to Aries-TM): -->
                 <property name="transactionManager" ref="springJtaTxManager" />
                 <!-- We set local transactions to false, because the JtaTransactionManager will take care of enrolling the XA JMS Connection when needed. -->
-                <property name="transacted" value="false" />
+                <property name="transacted" value="true" />
                 <property name="cacheLevelName" value="CACHE_NONE" />
                 <property name="maxConcurrentConsumers" value="1" />
             </bean>
